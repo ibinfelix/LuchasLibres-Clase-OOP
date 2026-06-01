@@ -13,9 +13,9 @@ int main() {
     std::cout << "  WELCOME TO THE LUCHA LIBRE SIMULATOR! \n";
     std::cout << "========================================\n\n";
 
-    // Create two units using the parameterized constructor
-    Luchador tecnico("El Mascarado Sagrado", 120, 24, 5); // Tecnico (Good guy)
-    Luchador rudo("El Demonio Obscuro", 150, 18, 4);      // Rudo (Bad guy)
+    // Create two objetcs or luchadores
+    Luchador tecnico("El Mascarado Sagrado", 120, 24, 5); 
+    Luchador rudo("El Demonio Obscuro", 150, 18, 4);     
 
     std::cout << "The contenders step into the ring:\n\n";
     tecnico.print();
@@ -23,14 +23,14 @@ int main() {
     rudo.print();
     std::cout << "========================================\n\n";
 
-    // Testing a Setter to prove functionality
+
     std::cout << "[SYSTEM]: Testing setters... El Demonio gets angry and levels up!\n";
     rudo.setLevel(6);
     std::cout << rudo.getName() << " is now level " << rudo.getLevel() << "!\n\n";
 
     int round = 1;
     
-    // Combat Loop: Ends when someone loses all health points
+    // Loop depending on
     while (tecnico.getHealth() > 0 && rudo.getHealth() > 0) {
         std::cout << "--- ROUND " << round << " ---\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));

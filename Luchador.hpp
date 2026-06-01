@@ -6,10 +6,10 @@
 class Luchador {
 private:
     std::string name;
-    int life;           // Maximum life points
-    int health;         // Current life points
-    int attackPoints;   // Maximum attack points
-    int level;          // Character level
+    int life;           
+    int health;         
+    int attackPoints;   
+    int level;          
 
 public:
     // Constructors
@@ -30,12 +30,12 @@ public:
     void setAttackPoints(int attackPoints);
     void setLevel(int level);
 
-    // Required Assignment Methods
+    // Methods
     int healthPercentage() const;
     void printHealthBar() const;
-    void receiveAttack(int damage);
-    void attack(Luchador& target);
-    void print() const;
+    virtual void receiveAttack(int damage);
+    virtual void attack(Luchador& target);
+    virtual void print() const;
 };
 
 #endif
