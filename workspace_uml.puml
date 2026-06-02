@@ -1,0 +1,108 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+class Exotico {
+	+Exotico()
+	+Exotico(std::string name, int life, int attackPoints, int level, float love)
+	+getLove() : float {query}
+	-love : float
+	+attack(Luchador& target) : void
+	+print() : void {query}
+	+receiveAttack(int damage) : void
+	+revive() : void
+	+setLove(float love) : void
+}
+
+
+abstract class Luchador {
+	+Luchador()
+	+Luchador(std::string name, int maxHP, int attackPoints, int level)
+	+~Luchador()
+	+operator>(const Luchador& other) : bool {query}
+	-HP : int
+	+HPPercentage() : int {query}
+	-attackPoints : int
+	+getAttackPoints() : int {query}
+	+getHP() : int {query}
+	+getHealth() : int {query}
+	+getLevel() : int {query}
+	+getLife() : int {query}
+	+getmaxHP() : int {query}
+	-level : int
+	-maxHP : int
+	+getName() : std::string {query}
+	-name : std::string
+	+attack(Luchador& target) : void
+	+print() : void {query}
+	+printHPBar() : void {query}
+	+printHealthBar() : void {query}
+	+receiveAttack(int damage) : void
+	+{abstract} revive() : void
+	+setAttackPoints(int attackPoints) : void
+	+setHP(int HP) : void
+	+setHealth(int health) : void
+	+setLevel(int level) : void
+	+setName(std::string name) : void
+	+setmaxHP(int maxHP) : void
+}
+
+
+class Rudo {
+	+Rudo()
+	+Rudo(std::string name, int life, int attackPoints, int level, int strength)
+	+getStrength() : int {query}
+	-strength : int
+	+attack(Luchador& target) : void
+	+print() : void {query}
+	+receiveAttack(int damage) : void
+	+revive() : void
+	+setStrength(int strength) : void
+}
+
+
+class Tecnico {
+	+Tecnico()
+	+Tecnico(std::string name, int life, int attackPoints, int level, float accuracy)
+	-accuracy : float
+	+getAccuracy() : float {query}
+	+attack(Luchador& target) : void
+	+print() : void {query}
+	+receiveAttack(int damage) : void
+	+revive() : void
+	+setAccuracy(float accuracy) : void
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+Luchador <|-- Exotico
+
+
+Luchador <|-- Rudo
+
+
+Luchador <|-- Tecnico
+
+
+
+
+
+/' Aggregation relationships '/
+
+
+
+
+
+/' Nested objects '/
+
+
+
+@enduml

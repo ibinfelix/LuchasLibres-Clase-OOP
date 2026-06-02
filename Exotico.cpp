@@ -64,3 +64,9 @@ void Exotico::print() const {
     printHealthBar();
     std::cout << "\n";
 }
+
+void Exotico::revive() {
+    setHealth(getLife());
+    setLove(love + 0.15f);
+    std::cout << "[REVIVAL] " << getName() << " captivates the crowd and is reborn with enhanced love!\n";
+}

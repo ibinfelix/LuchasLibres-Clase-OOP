@@ -58,3 +58,8 @@ void Tecnico::print() const {
     printHealthBar();
     std::cout << "\n";
 }
+
+void Tecnico::revive() {
+    setHealth(getLife());
+    std::cout << "[REVIVAL] " << getName() << " has been revived and returned to full health!\n";
+}

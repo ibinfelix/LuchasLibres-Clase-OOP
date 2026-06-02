@@ -57,3 +57,9 @@ void Rudo::print() const {
     printHealthBar();
     std::cout << "\n";
 }
+
+void Rudo::revive() {
+    setHealth(getLife());
+    setStrength(strength + 2);
+    std::cout << "[REVIVAL] " << getName() << " rises again with increased strength (+2)!\n";
+}

@@ -15,4 +15,5 @@ class Tecnico : public Luchador {
         void receiveAttack(int damage) override;
         void attack(Luchador& target) override;
         void print() const override;
+        void revive() override;
 };

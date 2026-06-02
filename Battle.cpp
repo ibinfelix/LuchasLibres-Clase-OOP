@@ -1,4 +1,6 @@
 #include "Luchador.hpp"
+#include "Tecnico.hpp"
+#include "Rudo.hpp"
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
@@ -12,8 +14,8 @@ int main() {
     std::cout << "  WELCOME TO THE LUCHA LIBRE SIMULATOR! \n";
     std::cout << "========================================\n\n";
 
-    Luchador tecnico("El Mascarado Sagrado", 120, 24, 5); 
-    Luchador rudo("El Demonio Obscuro", 150, 18, 4);     
+    Tecnico tecnico("El Mascarado Sagrado", 120, 24, 5, 0.7f); 
+    Rudo rudo("El Demonio Obscuro", 150, 18, 4, 15);     
 
     std::cout << "The contenders step into the ring:\n\n";
     tecnico.print();
@@ -24,6 +26,13 @@ int main() {
     std::cout << "[SYSTEM]: Testing setters... El Demonio gets angry and levels up!\n";
     rudo.setLevel(6);
     std::cout << rudo.getName() << " is now level " << rudo.getLevel() << "!\n\n";
+    
+    std::cout << "[SYSTEM]: Demonstrating operator overloading (>):\n";
+    if (tecnico > rudo) {
+        std::cout << tecnico.getName() << " has more attack power than " << rudo.getName() << "!\n\n";
+    } else {
+        std::cout << rudo.getName() << " has more attack power than " << tecnico.getName() << "!\n\n";
+    }
 
     int round = 1;
     
@@ -52,8 +61,12 @@ int main() {
 
     if (tecnico.getHP() > 0) {
         std::cout << "\nWINNER: " << tecnico.getName() << " maintains his honor!\n";
+        std::cout << "[SYSTEM]: Attempting revival of defeated opponent...\n";
+        rudo.revive();
     } else {
         std::cout << "\nWINNER: " << rudo.getName() << " takes the glory!\n";
+        std::cout << "[SYSTEM]: Attempting revival of defeated opponent...\n";
+        tecnico.revive();
     }
 
     return 0;
