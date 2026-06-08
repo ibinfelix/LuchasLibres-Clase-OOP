@@ -6,6 +6,44 @@
 
 /' Objects '/
 
+class Ataque {
+	+Ataque()
+	+Ataque(std::string nombre, int poder, int precision, int pp)
+	+usarAtaque() : bool
+	+getPPActual() : int {query}
+	+getPPMax() : int {query}
+	+getPoder() : int {query}
+	+getPrecision() : int {query}
+	-poder : int
+	-ppActual : int
+	-precision : int
+	-puntosResistencia : int
+	+getNombre() : std::string {query}
+	-nombre : std::string
+	+print() : void {query}
+	+restaurarPP() : void
+}
+
+
+class Equipo {
+	+Equipo(std::string nombre)
+	+~Equipo()
+	+getLuchador(int index) : Luchador* {query}
+	+getLuchadorActivo() : Luchador* {query}
+	+cambiarLuchador(int index) : bool
+	+hayLuchadoresVivos() : bool {query}
+	+contarLuchadoresVivos() : int {query}
+	+getNumLuchadores() : int {query}
+	-indexActivo : int
+	+getNombre() : std::string {query}
+	-nombreEquipo : std::string
+	-luchadores : std::vector<Luchador*>
+	+agregarLuchador(Luchador* luchador) : void
+	+imprimirEquipo() : void {query}
+	+imprimirEstadoEquipo() : void {query}
+}
+
+
 class Exotico {
 	+Exotico()
 	+Exotico(std::string name, int life, int attackPoints, int level, float love)
@@ -23,7 +61,9 @@ abstract class Luchador {
 	+Luchador()
 	+Luchador(std::string name, int maxHP, int attackPoints, int level)
 	+~Luchador()
+	+getAtaque(int index) : Ataque* {query}
 	+operator>(const Luchador& other) : bool {query}
+	+tienePP() : bool {query}
 	-HP : int
 	+HPPercentage() : int {query}
 	-attackPoints : int
@@ -32,12 +72,17 @@ abstract class Luchador {
 	+getHealth() : int {query}
 	+getLevel() : int {query}
 	+getLife() : int {query}
+	+getNumAtaques() : int {query}
 	+getmaxHP() : int {query}
 	-level : int
 	-maxHP : int
 	+getName() : std::string {query}
 	-name : std::string
+	-ataques : std::vector<Ataque*>
+	+agregarAtaque(Ataque* ataque) : void
+	+atacarCon(Ataque* ataque, Luchador& target) : void
 	+attack(Luchador& target) : void
+	+imprimirAtaques() : void {query}
 	+print() : void {query}
 	+printHPBar() : void {query}
 	+printHealthBar() : void {query}
@@ -96,6 +141,12 @@ Luchador <|-- Tecnico
 
 
 /' Aggregation relationships '/
+
+Equipo o-- Luchador
+
+
+Luchador o-- Ataque
+
 
 
 

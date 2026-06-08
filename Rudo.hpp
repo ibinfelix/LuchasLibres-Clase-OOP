@@ -3,7 +3,7 @@
  
 class Rudo : public Luchador {
     private:
-        int strength; // 1 to 20
+        int strength;
     
     public:
         Rudo();

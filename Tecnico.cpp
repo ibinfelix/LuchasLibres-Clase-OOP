@@ -1,6 +1,7 @@
 #include "Tecnico.hpp"
 #include <iostream>
 #include <cstdlib>
+#include <fstream>
  
 Tecnico::Tecnico() : Luchador(), accuracy(0.5f) {}
  
@@ -15,8 +16,8 @@ void Tecnico::setAccuracy(float accuracy) { this->accuracy = accuracy; }
  
 void Tecnico::receiveAttack(int damage) {
     int roll = rand() % 100;
-    int dodgeThreshold = static_cast<int>(accuracy * 100);
- 
+    int dodgeThreshold = static_cast<int>(accuracy * 50);
+
     if (roll < dodgeThreshold) {
         std::cout << getName() << " reads the move perfectly and DODGES the attack!\n";
         return;
@@ -24,6 +25,16 @@ void Tecnico::receiveAttack(int damage) {
  
     setHealth(getHealth() - damage);
     std::cout << getName() << " receives " << damage << " damage!\n";
+    // Print punch ASCII art when an attack actually lands
+    try {
+        std::ifstream artFile("Punch.txt");
+        if (artFile.is_open()) {
+            std::string line;
+            while (std::getline(artFile, line)) {
+                std::cout << line << "\n";
+            }
+        }
+    } catch (...) {}
 }
  
 void Tecnico::attack(Luchador& target) {

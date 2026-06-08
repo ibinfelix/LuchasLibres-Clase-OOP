@@ -1,6 +1,7 @@
 #include "Exotico.hpp"
 #include <iostream>
 #include <cstdlib>
+#include <fstream>
  
 Exotico::Exotico() : Luchador(), love(0.5f) {}
  
@@ -31,6 +32,16 @@ void Exotico::receiveAttack(int damage) {
  
     setHealth(getHealth() - actualDamage);
     std::cout << getName() << " receives " << actualDamage << " damage!\n";
+    // Print punch ASCII art when an attack lands
+    try {
+        std::ifstream artFile("Punch.txt");
+        if (artFile.is_open()) {
+            std::string line;
+            while (std::getline(artFile, line)) {
+                std::cout << line << "\n";
+            }
+        }
+    } catch (...) {}
 }
  
 void Exotico::attack(Luchador& target) {

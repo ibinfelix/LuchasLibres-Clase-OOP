@@ -2,6 +2,7 @@
 #include "Rudo.hpp"
 #include <iostream>
 #include <cstdlib>
+#include <fstream>
  
 Rudo::Rudo() : Luchador(), strength(10) {}
  
@@ -26,6 +27,16 @@ void Rudo::receiveAttack(int damage) {
     setHealth(getHealth() - actualDamage);
     std::cout << getName() << " takes the hit! Strength absorbs " << reduction
               << " damage. Receives " << actualDamage << " (from " << damage << ").\n";
+    // Print punch ASCII art when an attack lands
+    try {
+        std::ifstream artFile("Punch.txt");
+        if (artFile.is_open()) {
+            std::string line;
+            while (std::getline(artFile, line)) {
+                std::cout << line << "\n";
+            }
+        }
+    } catch (...) {}
 }
  
 void Rudo::attack(Luchador& target) {

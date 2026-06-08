@@ -2,6 +2,9 @@
 #define LUCHADOR_HPP
 
 #include <string>
+#include <vector>
+
+class Ataque;
 
 class Luchador {
 private:
@@ -9,12 +12,13 @@ private:
     int maxHP;           
     int HP;         
     int attackPoints;   
-    int level;         
+    int level;
+    std::vector<Ataque*> ataques;
 
 public:
     Luchador();
     Luchador(std::string name, int maxHP, int attackPoints, int level);
-    virtual ~Luchador() = default;
+    virtual ~Luchador();
 
     std::string getName() const;
     int getmaxHP() const;
@@ -28,22 +32,26 @@ public:
     void setAttackPoints(int attackPoints);
     void setLevel(int level);
 
+    void agregarAtaque(Ataque* ataque);
+    int getNumAtaques() const;
+    Ataque* getAtaque(int index) const;
+    void imprimirAtaques() const;
+    bool tienePP() const;
+
     int HPPercentage() const;
     void printHPBar() const;
-    void printHealthBar() const { printHPBar(); } // Alias for consistency
+    void printHealthBar() const { printHPBar(); }
     virtual void receiveAttack(int damage);
+    virtual void atacarCon(Ataque* ataque, Luchador& target);
     virtual void attack(Luchador& target);
     virtual void print() const;
     
-    // Aliases for naming consistency with derived classes
     int getHealth() const { return HP; }
     int getLife() const { return maxHP; }
     void setHealth(int health) { setHP(health); }
     
-    // Pure virtual method for polymorphism
     virtual void revive() = 0;
     
-    // Operator overloading: compare fighters by attack power
     bool operator>(const Luchador& other) const {
         return this->attackPoints > other.attackPoints;
     }
